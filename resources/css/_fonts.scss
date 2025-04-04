@@ -1,0 +1,67 @@
+@use './_variables.scss' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+}
+
+@mixin title($color) {
+    color: $color;
+    font-family: Space Grotesk;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 36px;
+
+    @media (max-width: 700px) {
+        & {
+            font-size: 28px;
+        }
+    }
+}
+
+@mixin subtitle($color) {
+    color: $color;
+    font-family: Space Grotesk;
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+
+    @media (max-width: 700px) {
+        & {
+            font-size: 28px;
+        }
+    }
+}
+
+.title {
+    @include title(on-surface(0));
+}
+
+.subtitle {
+    @include subtitle(on-surface(1));
+}
+
+.title-primary {
+    @include title(primary(5));
+}
+
+.subtitle-primary {
+    @include subtitle(primary(5));
+}
+
+.title-on-primary {
+    @include title(on-primary(0));
+}
+
+.subtitle-on-primary {
+    @include subtitle(on-primary(1));
+}
+
+.label {
+    color: on-surface(1);
+}
+
+.error-text {
+    color: error(5);
+}

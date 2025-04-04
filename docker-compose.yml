@@ -1,0 +1,54 @@
+services:
+    jaeger:
+        image: ${REGISTRY:-}jaegertracing/all-in-one:${JAEGER_VERSION:-latest}
+        ports:
+            - '16686:16686'
+            - '4317:4317'
+            - '4318:4318'
+        environment:
+            - LOG_LEVEL=debug
+    postgres:
+        image: postgres:17.0-alpine3.20
+        environment:
+            - POSTGRES_USER=${DB_USERNAME}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+            - POSTGRES_DB=${DB_DATABASE}
+        ports:
+            - '5432:5432'
+        volumes:
+            - postgres:/var/lib/postgresql/data
+    # postgres_testing:
+    #     image: postgres:17.0-alpine3.20
+    #     environment:
+    #         - POSTGRES_USER=testing
+    #         - POSTGRES_PASSWORD=password
+    #         - POSTGRES_DB=testing
+    #     ports:
+    #         - '5433:5432'
+    #     volumes:
+    #         - postgres:/var/lib/postgresql/data
+    # localstack:
+    #     image: localstack/localstack
+    #     ports:
+    #         - '127.0.0.1:4566:4566' # LocalStack Gateway
+    #         - '127.0.0.1:4510-4559:4510-4559' # external services port range
+    #     environment:
+    #         # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+    #         - DEBUG=${DEBUG:-0}
+    #     volumes:
+    #         - 'localstack:/var/lib/localstack'
+    #         - '/var/run/docker.sock:/var/run/docker.sock'
+    mailhog:
+        image: mailhog/mailhog
+        ports:
+            - '1025:1025'
+            - '8025:8025'
+    redis:
+        image: redis:latest
+        ports:
+            - 6379:6379
+volumes:
+    postgres:
+        driver: local
+    localstack:
+        driver: local

@@ -1,0 +1,116 @@
+@mixin content-width($width: 1000px) {
+    max-width: $width;
+    margin: auto;
+    width: 100%;
+    padding: 0 size(8);
+
+    @media (max-width: $width) {
+        padding: 0 size(8);
+    }
+
+    @media (max-width: 600px) {
+        padding: 0 size(4);
+    }
+}
+
+@mixin flex-col($size: 4) {
+    display: flex;
+    flex-direction: column;
+    gap: size($size);
+}
+
+@mixin pseudo($display: block, $pos: absolute, $width: 100%, $height: 100%, $content: '') {
+    content: $content;
+    display: $display;
+    position: $pos;
+    width: $width;
+    height: $height;
+}
+
+@function size($num) {
+    @return $num * 0.25rem;
+}
+
+@function get-color($key, $num, $alpha) {
+    @if $num >9 or $num < 0 {
+        @error 'number not in range';
+    }
+
+    $color-list: 'primary', 'secondary', 'surface', 'neutral', 'success', 'warning', 'error';
+
+    @each $current-key in $color-list {
+        @if $key ==$current-key {
+            @return hsl(var(--clr-#{$current-key}-#{$num}), $alpha);
+        }
+    }
+
+    @error 'key not found';
+}
+
+@function get-on-color($key, $num, $alpha) {
+    @if $num >2 or $num < 0 {
+        @error 'number not in range';
+    }
+
+    $color-list: 'primary', 'secondary', 'surface', 'neutral', 'success', 'warning', 'error';
+
+    @each $current-key in $color-list {
+        @if $key ==$current-key {
+            @return hsl(var(--clr-on-#{$current-key}-#{$num}), $alpha);
+        }
+    }
+
+    @error 'key not found';
+}
+
+@function primary($num, $alpha: 1) {
+    @return get-color('primary', $num, $alpha);
+}
+
+@function on-primary($num, $alpha: 1) {
+    @return get-on-color('primary', $num, $alpha);
+}
+
+@function secondary($num, $alpha: 1) {
+    @return get-color('secondary', $num, $alpha);
+}
+
+@function on-secondary($num, $alpha: 1) {
+    @return get-on-color('secondary', $num, $alpha);
+}
+
+@function success($num, $alpha: 1) {
+    @return get-color('success', $num, $alpha);
+}
+
+@function on-success($num, $alpha: 1) {
+    @return get-on-color('success', $num, $alpha);
+}
+
+@function warning($num, $alpha: 1) {
+    @return get-color('warning', $num, $alpha);
+}
+
+@function on-warning($num, $alpha: 1) {
+    @return get-on-color('warning', $num, $alpha);
+}
+
+@function error($num, $alpha: 1) {
+    @return get-color('error', $num, $alpha);
+}
+
+@function on-error($num, $alpha: 1) {
+    @return get-on-color('error', $num, $alpha);
+}
+
+@function surface($num, $alpha: 1) {
+    @if $num >9 or $num < 0 {
+        @error 'number not in range';
+    }
+
+    @return hsl(var(--clr-surface-#{$num}), $alpha);
+}
+
+@function on-surface($num, $alpha: 1) {
+    @return get-on-color('surface', $num, $alpha);
+}
