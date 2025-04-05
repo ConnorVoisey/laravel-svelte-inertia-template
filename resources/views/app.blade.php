@@ -13,7 +13,7 @@
         <link rel="icon" type="image/x-icon" href="/favicon.png">
 
         <!-- Scripts -->
-        @vite(['resources/js/app.ts', "resources/js/Pages/{$page['component']}.svelte"])
+        @vite(['resources/css/app.css', 'resources/js/app.ts', "resources/js/Pages/{$page['component']}.svelte"])
         @inertiaHead
     </head>
     <body class="font-sans antialiased">

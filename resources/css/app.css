@@ -1,0 +1,4 @@
+@import 'tailwindcss' important;
+@config "../../tailwind.config.js";
+@source "../views"
+@source "../js";

@@ -1,4 +1,4 @@
-import '../css/app.scss';
+import '../css/main.scss';
 
 import type { ResolvedComponent } from '@inertiajs/svelte';
 import { createInertiaApp } from '@inertiajs/svelte';

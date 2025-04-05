@@ -1,4 +1,5 @@
 import { svelte } from '@sveltejs/vite-plugin-svelte';
+import tailwindcss from '@tailwindcss/vite';
 import laravel from 'laravel-vite-plugin';
 import path from 'path';
 import Icons from 'unplugin-icons/vite';
@@ -33,6 +34,7 @@ export default defineConfig({
             pattern: '*.php',
             command: ['php artisan trail:generate', 'npm run db:gen_types'],
         }),
+        tailwindcss({}),
     ],
     css: {
         preprocessorOptions: {
